@@ -9,6 +9,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     {
         if (transform.childCount == 0)
         {
+            //attribue le drag si le slot est vide
             Collectible collectible = eventData.pointerDrag.GetComponent<Collectible>();
             collectible.parentAfterDrag = transform;
         }
