@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     private float horizontal, vertical;
     private BoxCollider2D boxcollider;
     private Rigidbody2D body;
 
     [SerializeField] private float speed;
 
+    
     void Start()
     {
         boxcollider = GetComponent<BoxCollider2D>();
@@ -21,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         // Inputs :
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        Flip();
+        
     }
 
     // Movement :
@@ -29,14 +31,5 @@ public class PlayerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(vertical * speed, body.velocity.y);
         body.velocity = new Vector2(horizontal * speed, body.velocity.x);
-    }
-
-    //pas utilisée pour l'instant TTTTTTTTTTTTTTTTTTTTTT
-    private void Flip()
-    {
-        if (horizontal > 0.01f)
-            transform.localScale = Vector3.one;
-        else if (horizontal < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
     }
 }
