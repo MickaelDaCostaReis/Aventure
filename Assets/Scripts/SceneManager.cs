@@ -5,7 +5,7 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
 
-    private void Start()
+    private void Awake()
     {
         //permet de garder l'ojet contenant ce script...
         if (instance == null)

@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager instance;
     public int maxStack = 12;
     public GameObject inventoryItemPrefab; //prefab utilisé pour les collectibles
     public InventorySlot[] inventorySlots; //Liste des slots
-
-   
     public bool AddItem(Item item)
     {
         //cherche un slot avec le meme item et un nombre inférieur au maximum
@@ -18,12 +15,12 @@ public class InventoryManager : MonoBehaviour
             InventorySlot slot = inventorySlots[i];
             Collectible itemInSlot = slot.GetComponentInChildren<Collectible>();
             if (itemInSlot != null &&
-                itemInSlot.item == item &&
-                itemInSlot.count < maxStack &&
-                itemInSlot.item.stackable)
+                itemInSlot == item &&
+                itemInSlot.count < maxStack)
             {
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
+                SpawnNewItem(item, slot);
                 return true; // item ajouté
             }
         }
