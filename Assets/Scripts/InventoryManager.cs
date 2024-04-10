@@ -15,12 +15,12 @@ public class InventoryManager : MonoBehaviour
             InventorySlot slot = inventorySlots[i];
             Collectible itemInSlot = slot.GetComponentInChildren<Collectible>();
             if (itemInSlot != null &&
-                itemInSlot == item &&
-                itemInSlot.count < maxStack)
+                itemInSlot.item == item &&
+                itemInSlot.count < maxStack &&
+                itemInSlot.item.stackable== true)
             {
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
-                SpawnNewItem(item, slot);
                 return true; // item ajouté
             }
         }
