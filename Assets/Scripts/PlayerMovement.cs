@@ -8,12 +8,20 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxcollider;
     private Rigidbody2D body;
 
+    private SpriteRenderer spriteRenderer;
+
+
     [SerializeField] private float speed;
+    [SerializeField] private Sprite sprite_W;
+    [SerializeField] private Sprite sprite_S;
+    [SerializeField] private Sprite sprite_Q;
+    [SerializeField] private Sprite sprite_D;
 
     void Start()
     {
         boxcollider = GetComponent<BoxCollider2D>();
         body = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -31,12 +39,16 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(horizontal * speed, body.velocity.x);
     }
 
-    //pas utilisée pour l'instant TTTTTTTTTTTTTTTTTTTTTT
+    //Change la direction du perso :
     private void Flip()
     {
         if (horizontal > 0.01f)
-            transform.localScale = Vector3.one;
+            spriteRenderer.sprite = sprite_D;
         else if (horizontal < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
+            spriteRenderer.sprite = sprite_Q;
+        if (vertical < -0.01f)
+            spriteRenderer.sprite = sprite_S;
+        else if (vertical > 0.01f)
+            spriteRenderer.sprite = sprite_W;
     }
 }

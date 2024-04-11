@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5a7864af17425c34caab9a13f2c0b1b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c593cbe9f1ff96946ae0bfc3fd0344ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  sprite_W: {fileID: 21300000, guid: c7eabeae01b5c5c4a8b3ae0dce819fe4, type: 3}
+  sprite_S: {fileID: 21300000, guid: c593cbe9f1ff96946ae0bfc3fd0344ae, type: 3}
+  sprite_Q: {fileID: 21300000, guid: 06228e1cc2f30b34791e067569e4fc18, type: 3}
+  sprite_D: {fileID: 21300000, guid: 33643810947747749baab0f430ef1d4c, type: 3}
 --- !u!50 &7184730467693775187
 Rigidbody2D:
   serializedVersion: 4
@@ -127,7 +131,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6419012211280877720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,18 +164,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1122427, y: -1.1280386}
+  m_Offset: {x: 0.014612436, y: -1.1911688}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4, y: 4}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7755146, y: 0.8316363}
+  m_Size: {x: 0.8617339, y: 0.61796546}
   m_EdgeRadius: 0
 --- !u!114 &5663648469332326584
 MonoBehaviour:
