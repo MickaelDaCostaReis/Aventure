@@ -29,7 +29,6 @@ public class Collectible : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        countText.raycastTarget = false;
         img.raycastTarget = false;
         // Mets le drag en bas de la liste sur unity
         // pour pouvoir le mettre au premier plan sur l'écran
@@ -46,7 +45,6 @@ public class Collectible : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         //snap sur le slot d'inventaire
-        countText.raycastTarget = true;
         img.raycastTarget = true;
         // assigne le drop en enfant du slot d'inventaire
         transform.SetParent(parentAfterDrag);

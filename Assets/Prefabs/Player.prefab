@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7184730467693775187}
   - component: {fileID: 6419012211280877720}
   - component: {fileID: 5663648469332326584}
-  m_Layer: 0
-  m_Name: Circle
+  - component: {fileID: 405480505154982550}
+  m_Layer: 3
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,3 +191,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
+--- !u!114 &405480505154982550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779361758701284649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c29df86c2013f94d915405fb636863f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 10
+  iframestime: 2
+  blinks: 1
+  canRespawn: 1
+  spawn: {fileID: 0}
+  currenthealth: 0

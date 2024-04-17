@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67716df4b16bf140835f2ae86e40c4c, type: 3}
   m_Name: Healing Potion
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
   type: 2
   actionType: 1
-  range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 21300000, guid: 4b391fcd9d0550f4aaee9160c9970413, type: 3}
+  image: {fileID: 21300000, guid: 6d58fc21b85c3d54faa3f6fb8fa67e2f, type: 3}

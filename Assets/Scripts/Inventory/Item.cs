@@ -7,10 +7,9 @@ using UnityEngine.Tilemaps;
 public class Item : ScriptableObject
 {
     [Header("Gameplay")]
-    public TileBase tile; //Montre la tile visée
     public ItemType type;
     public ActionType actionType;
-    public Vector2Int range = new Vector2Int(5, 4);
+
 
     [Header("UI")]
     public bool stackable=true;
