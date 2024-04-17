@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     [Header("Gameplay")]
     public ItemType type;
     public ActionType actionType;
-
+    public int id;
 
     [Header("UI")]
     public bool stackable=true;
@@ -21,13 +21,15 @@ public class Item : ScriptableObject
     {
         Tool,
         Weapon,
-        Potion
+        Potion,
+        Quest
     }
 
     public enum ActionType
     {
         Break,
         Use,
-        Attack
+        Attack,
+        HandOver
     }
 }

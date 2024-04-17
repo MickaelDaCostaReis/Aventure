@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c67716df4b16bf140835f2ae86e40c4c, type: 3}
-  m_Name: Healing Potion
+  m_Name: Stamina Potion
   m_EditorClassIdentifier: 
   type: 2
   actionType: 1
-  id: 0
+  id: 3
   stackable: 1
-  image: {fileID: 21300000, guid: 24785ebcb08ae664bafe49060c117d28, type: 3}
+  image: {fileID: 21300000, guid: 1ebb0ca615a1cd7428a4603eedd3f284, type: 3}

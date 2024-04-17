@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float blinks;
     [SerializeField] private bool canRespawn;
     [SerializeField] private Transform spawn;
+    [SerializeField] private Item []items;
     private SpriteRenderer blinkingSprite;
     //private Animator animation;
 
@@ -68,10 +69,15 @@ public class Health : MonoBehaviour
         }
         else //mob :
         {
-
+            DropItems(items[0]);
             gameObject.SetActive(false);
         }
-        
-        
     }
+
+    public void DropItems(Item item)
+    {
+
+    }
+
+
 }
