@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private Transform pointA, pointB;
     private Transform enemy;
     [SerializeField] private float speed;
     private Vector3 Scale;
     private bool goingLeft;
 
+    [Header("Health")]
+    [SerializeField] private GameObject[] items;
+    [SerializeField] private float maxhealth;
+    private float currenthealth;
+
+    [Header("Drops")]
+    [SerializeField] private List<ItemDrops> dropsList = new List<ItemDrops>();
+
+
     private void Awake()
     {
+        currenthealth = maxhealth;
         enemy = transform;
         Scale = enemy.localScale;
         goingLeft = true;
@@ -32,7 +43,11 @@ public class EnemyBehaviour : MonoBehaviour
             else
                 ChangeDirection();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Die();
+        }
     }
 
     private void moving(int direction)
@@ -44,5 +59,42 @@ public class EnemyBehaviour : MonoBehaviour
     private void ChangeDirection()
     {
         goingLeft = !goingLeft;
+    }
+
+    public void takeDamage(float damage)
+    {
+        currenthealth = Mathf.Clamp(currenthealth - damage, 0, maxhealth);
+        if (currenthealth > 0)
+        {
+            // animation.SetTrigger("Hurt");
+        }
+        else
+        {
+            //animation.SetTrigger("Death");
+            // use Die() in animator !!!!!!!!!!!!!!!!!!!!!!
+            Die();
+        }
+    }
+    public void Die()
+    {
+        foreach (ItemDrops itemDrop in dropsList)
+        {
+            if (Random.Range(0f, 100f) <= itemDrop.dropChance)
+            {
+                InstatiateDrop(itemDrop.item, itemDrop.itemPrefab);
+            }
+        }
+        gameObject.SetActive(false);
+        
+    }
+
+    void InstatiateDrop(Item item, GameObject drop)
+    {
+        if (drop)
+        {
+            GameObject droppedItem = Instantiate(drop, transform.position, Quaternion.identity);
+            Collectible collectible = droppedItem.GetComponent<Collectible>();
+            collectible.InitialiseItem(item);
+        }
     }
 }
