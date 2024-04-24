@@ -18,6 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [Header("Drops")]
     [SerializeField] private List<ItemDrops> dropsList = new List<ItemDrops>();
+    
 
 
     private void Awake()
@@ -77,24 +78,24 @@ public class EnemyBehaviour : MonoBehaviour
     }
     public void Die()
     {
+        //Drop un item en fonction du % de chance donné pour chaque item listé
         foreach (ItemDrops itemDrop in dropsList)
         {
             if (Random.Range(0f, 100f) <= itemDrop.dropChance)
             {
-                InstatiateDrop(itemDrop.item, itemDrop.itemPrefab);
+                InstatiateDrop(itemDrop.item, itemDrop.itemDropPrefab);
             }
         }
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         
     }
-
-    void InstatiateDrop(Item item, GameObject drop)
+    //crée l'item récupérable in-game
+    void InstatiateDrop(Item item, GameObject lootPrefab)
     {
-        if (drop)
+        if (lootPrefab)
         {
-            GameObject droppedItem = Instantiate(drop, transform.position, Quaternion.identity);
-            Collectible collectible = droppedItem.GetComponent<Collectible>();
-            collectible.InitialiseItem(item);
+            GameObject loot = Instantiate(lootPrefab, transform.position, Quaternion.identity);
+            loot.GetComponent<loot>().Initialize(item);
         }
     }
 }

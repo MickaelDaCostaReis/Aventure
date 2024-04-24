@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemDrops 
 {
     // Permet de définir les chances de drops de chaque item sur unity
-    public GameObject itemPrefab;
+    public GameObject itemDropPrefab;
     public Item item;
     [Range(0, 100)] public float dropChance;
 }

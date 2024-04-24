@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5825448216297817643}
   - component: {fileID: 354234332069461062}
   - component: {fileID: 1964951687739676795}
-  - component: {fileID: 7154956823683337777}
   - component: {fileID: 5285140853421245394}
   m_Layer: 6
   m_Name: Enemy
@@ -116,24 +115,15 @@ MonoBehaviour:
   pointA: {fileID: 2121212886608780536}
   pointB: {fileID: 7085659816154704225}
   speed: 20
---- !u!114 &7154956823683337777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417241126506914435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c29df86c2013f94d915405fb636863f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  items: []
   maxhealth: 2
-  iframestime: 0
-  blinks: 0
-  canRespawn: 0
-  spawn: {fileID: 0}
-  currenthealth: 0
+  dropsList:
+  - itemPrefab: {fileID: 3345373691900655053, guid: ac1ea7bfd44b3b346a0996e95e40b6f0, type: 3}
+    item: {fileID: 11400000, guid: 3075f59238ed4294782f95799787d3f8, type: 2}
+    dropChance: 100
+  - itemPrefab: {fileID: 3345373691900655053, guid: ac1ea7bfd44b3b346a0996e95e40b6f0, type: 3}
+    item: {fileID: 11400000, guid: ffe064142348b6a4ea255071934d0f1e, type: 2}
+    dropChance: 100
 --- !u!60 &5285140853421245394
 PolygonCollider2D:
   m_ObjectHideFlags: 0

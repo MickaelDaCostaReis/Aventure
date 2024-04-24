@@ -14,4 +14,28 @@ public class SpawnScriptfortesting : MonoBehaviour
         if (result) Debug.Log("item added");
         else Debug.Log("Inventory full");
     }
+    public void GetSelectItem()
+    {
+        Item receivedItem = inventoryManager.GetSelectedItem(false);
+        if (receivedItem != null)
+        {
+            Debug.Log("received item"+ receivedItem);
+        }   
+        else
+        {
+            Debug.Log("No item received");
+        }
+    }
+    public void UseGetSelectItem()
+    {
+        Item receivedItem = inventoryManager.GetSelectedItem(true);
+        if (receivedItem != null)
+        {
+            Debug.Log("used item" + receivedItem);
+        }
+        else
+        {
+            Debug.Log("No item used");
+        }
+    }
 }
