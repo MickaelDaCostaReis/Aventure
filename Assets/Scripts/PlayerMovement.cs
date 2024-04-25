@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal, vertical;
-    private BoxCollider2D boxcollider;
     private Rigidbody2D body;
-
+    private PlayerInput playerInput;
+    private PlayerInputActions playerInputActions;
     private SpriteRenderer spriteRenderer;
 
 
@@ -17,38 +18,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite sprite_Q;
     [SerializeField] private Sprite sprite_D;
 
-    void Start()
+    private void Awake()
     {
-        boxcollider = GetComponent<BoxCollider2D>();
         body = GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<PlayerInput>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
     }
 
-    void Update()
-    {
-        // Inputs :
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        Flip();
-    }
+   
 
     // Movement :
     private void FixedUpdate()
     {
-        body.velocity = new Vector2(vertical * speed, body.velocity.y);
-        body.velocity = new Vector2(horizontal * speed, body.velocity.x);
-    }
-
-    //Change la direction du perso :
-    private void Flip()
-    {
-        if (horizontal > 0.01f)
-            spriteRenderer.sprite = sprite_D;
-        else if (horizontal < -0.01f)
-            spriteRenderer.sprite = sprite_Q;
-        if (vertical < -0.01f)
-            spriteRenderer.sprite = sprite_S;
-        else if (vertical > 0.01f)
-            spriteRenderer.sprite = sprite_W;
+        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+        body.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode2D.Force);
     }
 }

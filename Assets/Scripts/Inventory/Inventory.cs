@@ -7,13 +7,10 @@ public class Inventory : MonoBehaviour
 {
     public GameObject inventory;
 
-    void Update()
+    public void OpenInventory()
     {
-        //ouvrir l'inventaire
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (inventory.activeInHierarchy) inventory.SetActive(false);
-            else inventory.SetActive(true);
-        }
+        if (inventory.activeInHierarchy) inventory.SetActive(false);
+        else inventory.SetActive(true);
     }
+    
 }
