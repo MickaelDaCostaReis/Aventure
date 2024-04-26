@@ -5,7 +5,6 @@ using UnityEngine;
 public class loot : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private BoxCollider2D bcld;
     [SerializeField] private float moveSpeed;
 
     private Item item;
@@ -30,7 +29,6 @@ public class loot : MonoBehaviour
 
     private IEnumerator MoveAndCollect(Transform target)
     {
-        Destroy(bcld);
         while(transform.position!= target.position)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
