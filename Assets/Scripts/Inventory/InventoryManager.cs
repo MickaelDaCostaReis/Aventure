@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -9,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryItemPrefab; //prefab utilisé pour les collectibles
     public InventorySlot[] inventorySlots; //Liste des slots
     int selectedSlot = -1;
+    int slotUpdate = 0;
+
 
     private void Awake()
     {
@@ -18,17 +22,21 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         ChangeSelectedSlot(0);
+
     }
 
     private void Update()
     {
-        if (Input.inputString != null)                              //Terrible !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //Selectionne le slot avec la molette de la souris
+        if(Input.GetAxis("Mouse ScrollWheel") != 0)
         {
-            bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (isNumber && number >=0 && number <= 9)
-            {
-                ChangeSelectedSlot(number);
-            }
+            var delta = Input.GetAxis("Mouse ScrollWheel");
+            if (delta < 0) slotUpdate--;
+            else if (delta > 0) slotUpdate++;
+            if (slotUpdate < 0) slotUpdate = 9;
+            else if (slotUpdate > 9) slotUpdate = 0;
+            ChangeSelectedSlot(slotUpdate);
+
         }
     }
     void ChangeSelectedSlot(int newValue)
@@ -37,7 +45,6 @@ public class InventoryManager : MonoBehaviour
         {
             inventorySlots[selectedSlot].Deselect();
         }
-        
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
     }

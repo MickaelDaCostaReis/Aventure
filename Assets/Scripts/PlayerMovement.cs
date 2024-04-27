@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal, vertical;
-    private BoxCollider2D boxcollider;
     private Rigidbody2D body;
 
     private SpriteRenderer spriteRenderer;
@@ -19,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        boxcollider = GetComponent<BoxCollider2D>();
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
