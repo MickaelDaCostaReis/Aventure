@@ -4,7 +4,6 @@ public class Flag : MonoBehaviour
 {
     [SerializeField] bool toNextLevel;
     [SerializeField] string levelName;
-    //[SerializeField] Transform spawnPoint;
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +12,6 @@ public class Flag : MonoBehaviour
             if (toNextLevel)
             {
                 SceneController.instance.NextLevel();
-                //collision.transform.position = spawnPoint.position;
             }
             else
             {

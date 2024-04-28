@@ -64,7 +64,6 @@ public class Health : MonoBehaviour
         animation.Play("Idle");
         GetComponent<PlayerMovement>().enabled = true;
     }
-    //appelé dans l'animation de mort
     public void GameOver()
     {
         gameOver.Setup(score);

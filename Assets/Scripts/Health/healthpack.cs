@@ -14,7 +14,4 @@ public class Healthpack : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    
-
-
 }

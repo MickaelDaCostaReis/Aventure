@@ -66,7 +66,6 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             //animation.SetTrigger("Death");
-            // use Die() in animator !!!!!!!!!!!!!!!!!!!!!!
             Die();
         }
     }
