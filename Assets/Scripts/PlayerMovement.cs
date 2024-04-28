@@ -1,54 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR.Haptics;
+
+public enum PlayerState
+{
+    walking,
+    attacking,
+    interacting
+}
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal, vertical;
+    private Vector3 change;
     private Rigidbody2D body;
-
-    private SpriteRenderer spriteRenderer;
+    public PlayerState playerState;
+    public Item sword;
 
 
     [SerializeField] private float speed;
-    [SerializeField] private Sprite sprite_W;
-    [SerializeField] private Sprite sprite_S;
-    [SerializeField] private Sprite sprite_Q;
-    [SerializeField] private Sprite sprite_D;
-
+    private Animator animation;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animation = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        // Inputs :
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        Flip();
+        if (Input.GetButtonDown("Fire1") && playerState!=PlayerState.attacking && InventoryManager.instance.GetSelectedItem(false)==sword)
+        {
+            StartCoroutine(AttackCD());
+        }
     }
-
+    private IEnumerator AttackCD()
+    {
+        animation.SetBool("isAttacking",true);
+        playerState = PlayerState.attacking;
+        yield return null;
+        animation.SetBool("isAttacking",false);
+        yield return new WaitForSeconds(0.3f);
+        playerState= PlayerState.walking;
+    }
     // Movement :
     private void FixedUpdate()
     {
-        body.velocity = new Vector2(vertical * speed, body.velocity.y);
-        body.velocity = new Vector2(horizontal * speed, body.velocity.x);
+        // Inputs :
+        change = Vector3.zero;
+        change.x = Input.GetAxis("Horizontal");
+        change.y = Input.GetAxis("Vertical");
+        if (change != Vector3.zero)
+        {
+            animation.SetFloat("MoveX", change.x);
+            animation.SetFloat("MoveY", change.y);
+            animation.SetBool("isMoving", true);
+            playerState=PlayerState.walking;
+        }
+        else
+        {
+            animation.SetBool("isMoving", false);
+        }
+        body.velocity = new Vector2(change.y * speed, body.velocity.y);
+        body.velocity = new Vector2(change.x * speed, body.velocity.x);
     }
-
-    //Change la direction du perso :
-    private void Flip()
-    {
-        if (horizontal > 0.01f)
-            spriteRenderer.sprite = sprite_D;
-        else if (horizontal < -0.01f)
-            spriteRenderer.sprite = sprite_Q;
-        if (vertical < -0.01f)
-            spriteRenderer.sprite = sprite_S;
-        else if (vertical > 0.01f)
-            spriteRenderer.sprite = sprite_W;
-    }
+    
 }
 
 

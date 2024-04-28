@@ -31,8 +31,8 @@ public class InventoryManager : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             var delta = Input.GetAxis("Mouse ScrollWheel");
-            if (delta < 0) slotUpdate--;
-            else if (delta > 0) slotUpdate++;
+            if (delta < 0) slotUpdate++;
+            else if (delta > 0) slotUpdate--;
             if (slotUpdate < 0) slotUpdate = 9;
             else if (slotUpdate > 9) slotUpdate = 0;
             ChangeSelectedSlot(slotUpdate);

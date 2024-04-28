@@ -12,12 +12,11 @@ public class EnemyBehaviour : MonoBehaviour
     private bool goingLeft;
 
     [Header("Health")]
-    [SerializeField] private GameObject[] items;
     [SerializeField] private float maxhealth;
     private float currenthealth;
 
     [Header("Drops")]
-    [SerializeField] private List<ItemDrops> dropsList = new List<ItemDrops>();
+    [SerializeField] private List<ItemDrops> dropsList = new();
     
 
 
@@ -33,25 +32,20 @@ public class EnemyBehaviour : MonoBehaviour
         if (goingLeft)
         {
             if(enemy.position.x >= pointA.position.x) 
-                moving(-1);
+                Moving(-1);
             else
                 ChangeDirection();
         }
         else
         {
             if (enemy.position.x <= pointB.position.x)
-                moving(1);
+                Moving(1);
             else
                 ChangeDirection();
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Die();
-        }
     }
 
-    private void moving(int direction)
+    private void Moving(int direction)
     {
         enemy.localScale = new Vector3(-Mathf.Abs(Scale.x)*direction, Scale.y, Scale.z);  
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime *direction * speed, enemy.position.y, enemy.position.z);
@@ -62,7 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
         goingLeft = !goingLeft;
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currenthealth = Mathf.Clamp(currenthealth - damage, 0, maxhealth);
         if (currenthealth > 0)
@@ -95,7 +89,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (lootPrefab)
         {
             GameObject loot = Instantiate(lootPrefab, transform.position, Quaternion.identity);
-            loot.GetComponent<loot>().Initialize(item);
+            loot.GetComponent<Loot>().Initialize(item);
         }
     }
 }

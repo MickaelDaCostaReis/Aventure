@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class loot : MonoBehaviour
+public class Loot : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private float moveSpeed;
@@ -27,7 +27,7 @@ public class loot : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveAndCollect(Transform target)
+    public IEnumerator MoveAndCollect(Transform target)
     {
         while(transform.position!= target.position)
         {

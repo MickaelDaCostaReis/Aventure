@@ -11,33 +11,34 @@ public class Health : MonoBehaviour
     [SerializeField] private float blinks;
     [SerializeField] private Transform spawn;
     private SpriteRenderer blinkingSprite;
-
     
-    //private Animator animation;
+    public GameOver gameOver;
+    int score = 0;
 
-    private float currenthealth;
+    private Animator animation;
+    [HideInInspector] public float currenthealth;
+
 
     private void Start()
     {
         currenthealth = maxhealth;
         blinkingSprite = GetComponent<SpriteRenderer>();
-        //animation = GetComponent<Animator>();
+        animation = GetComponent<Animator>();
     }
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currenthealth = Mathf.Clamp(currenthealth - damage, 0, maxhealth);
         if (currenthealth > 0)
         {
-            // animation.SetTrigger("Hurt");
             StartCoroutine(Invincibility());
         }
         else
         {
-            //animation.SetTrigger("Death");
+            animation.SetTrigger("Die");
         }
     }
 
-    public void takeHealthpack(float heals)
+    public void TakeHealthpack(float heals)
     {
         currenthealth = Mathf.Clamp(currenthealth + heals, 0, maxhealth);
     }
@@ -54,14 +55,19 @@ public class Health : MonoBehaviour
         }
         Physics2D.IgnoreLayerCollision(3, 6, false);
     }
-    public void Die()
+    public void Respawn()
     {
-        // système de respawn obsolète, passer par un menu pls
         transform.position = spawn.position;
-        takeHealthpack(maxhealth);
-        //animation.ResetTrigger("Death");
-        //animation.Play("Idle");
+        TakeHealthpack(maxhealth);
+        gameOver.UnDisplay();
+        animation.ResetTrigger("Die");
+        animation.Play("Idle");
+        GetComponent<PlayerMovement>().enabled = true;
     }
-
-    
+    //appelé dans l'animation de mort
+    public void GameOver()
+    {
+        gameOver.Setup(score);
+        GetComponent<PlayerMovement>().enabled = false;
+    }
 }
